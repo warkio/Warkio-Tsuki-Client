@@ -1,0 +1,8 @@
+{
+  "name": "wark-tsuki",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

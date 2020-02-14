@@ -1,0 +1,50 @@
+<app-toolbar></app-toolbar>
+
+<ion-content>
+    
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12">
+                <ion-button id="new-project-button" routerLink="/project/new" color="light" style="width:100%">New project</ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-sm="12" size-xs="12" size="4" size-md="4" *ngFor="let project of projects">
+                <ion-card>
+                    <ion-card-header>
+                        <ion-item>
+                            <!-- Settings buttons -->
+                            <ion-buttons slot="end">
+                                <!-- Copy to clipboard -->
+                                <ion-button [copy-clipboard]="copyToClipboard(project.project_identifier)" (copied)="notify($event)" fill="clear" color="dark">
+                                    <ion-icon slot="icon-only" name="clipboard-outline"></ion-icon>
+                                </ion-button>
+
+                                <!-- Edit-->
+                                <ion-button routerLink="/project/{{project.project_identifier}}" [queryParams]="{edit: true}" fill="clear" color="dark">
+                                    <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+                                </ion-button>
+                                
+                                <!-- Delete -->
+                                <ion-button (click)="deleteProject(project.project_identifier)" fill="clear" color="dark">
+                                    <ion-icon slot="icon-only" name="trash-bin-outline"></ion-icon>
+                                </ion-button>
+
+                            </ion-buttons>
+                        </ion-item>
+                        <!-- Project details -->
+                        <ion-card-title class="ion-text-center" style="padding-bottom: 5px">{{project.project_name}}</ion-card-title>
+                        <ion-card-subtitle *ngIf="project.created_at">Created at: {{project.created_at.split('.')[0]}}</ion-card-subtitle>
+                        <ion-card-subtitle *ngIf="project.updated_at">Last update: {{project.updated_at.split('.')[0]}}</ion-card-subtitle>
+                    </ion-card-header>
+                    <!-- Project description -->
+                    <ion-card-content>
+                        {{project.project_description}}
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+            
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

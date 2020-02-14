@@ -1,0 +1,27 @@
+<ion-content>
+  <ion-grid>
+    <ion-row style="width: 100%;">
+      <ion-col size="12" class="ion-text-center">
+        <ion-item>
+          <ion-label position="stacked">Name</ion-label>
+          <ion-input type="text" placeholder="name" [(ngModel)]="data.name"></ion-input>
+        </ion-item>
+
+      </ion-col>
+      <ion-col size="12" class="ion-text-center">
+        <ion-item>
+          <ion-label position="stacked">Description</ion-label>
+          <ion-input type="textarea" placeholder="description" [(ngModel)]="data.description"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-item>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()" fill="outline">
+        Save changes
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+
+</ion-content>

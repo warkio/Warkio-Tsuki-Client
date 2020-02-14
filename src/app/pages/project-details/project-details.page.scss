@@ -1,0 +1,14 @@
+.swiper-pagination {
+    display: none !important;
+}
+
+:host ::ng-deep ngx-codemirror .CodeMirror{
+    max-height:100% !important;
+    height: 100% !important;
+    width: auto;
+    max-width: 100% !important;
+}
+ion-fab {
+    top: 30px;
+    z-index: 999 !important;
+}

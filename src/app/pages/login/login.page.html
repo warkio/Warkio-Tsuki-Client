@@ -1,0 +1,22 @@
+<ion-content style="height: 100%;">
+  <ion-grid style="height: 100%">
+    <ion-row style="height: 100%">
+      <ion-col size-xs="12" size-sm="12" size-md="4" size="4" align-self="center" id="login-form-col" offset="4" class="ion-text-center" >
+        <ion-card id="login-card" class="ion-text-center" style="vertical-align: middle;">
+          <ion-card-content>  
+            <ion-select placeholder="Login or register" [(ngModel)]="selectedField" (ionChange)="processChange()" mode="ios" interface="popover">
+              <ion-select-option value="login" selected>Login</ion-select-option>
+              <ion-select-option value="register">Register</ion-select-option>
+            </ion-select>
+            <ion-input type="text" placeholder="username" [(ngModel)]="username"></ion-input>
+            <ion-input type="text" placeholder="email" [(ngModel)]="email" *ngIf="selectedField == 'register'"></ion-input>
+            <ion-input type="password" placeholder="password" [(ngModel)]="password"></ion-input>
+            <ion-button (click)="handleClick()" expand="block" fill="clear">
+              Submit
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

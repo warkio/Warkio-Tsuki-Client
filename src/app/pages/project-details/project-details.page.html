@@ -1,0 +1,70 @@
+<app-toolbar>
+
+</app-toolbar>
+
+<ion-fab horizontal="end" vertical="top" slot="fixed">
+  <ion-fab-button color="light">
+    <ion-icon md="chevron-down-circle-outline" ios="chevron-down-circle-outline"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="bottom">
+    <!-- Save -->
+    <ion-fab-button color="light" (click)="saveTemplate()">
+      <ion-icon name="save-outline"></ion-icon>
+    </ion-fab-button>
+    <!-- Copy to clipboard -->
+    <ion-fab-button color="light" *ngIf="this.id != 'new'" [copy-clipboard]="copyToClipboard()" (copied)="notify($event)">
+      <ion-icon name="clipboard-outline"></ion-icon>
+    </ion-fab-button>
+    <!-- Edit description -->
+    <ion-fab-button color="light" (click)="openDialog()">
+      <ion-icon name="receipt-outline"></ion-icon>
+    </ion-fab-button>
+    <!-- Go back -->
+    <ion-fab-button color="light" [routerLink]="'/dashboard'">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
+<ion-toolbar>
+  <ion-item>
+    <ion-grid>
+      <ion-row style="width: 100%;">
+        <ion-col size="12" >
+          <ion-buttons style="display: inline-block; text-align: center;width:100%">
+            <ion-button (click)="moveTo(0)" class="ion-align-self-center">
+              Html
+            </ion-button>
+            <ion-button (click)="moveTo(1)">
+              Preview
+            </ion-button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-item>
+
+</ion-toolbar>
+
+<div class="content">
+
+  <ion-slides pager="true" [options]="sliderOpts" style="height: 90vh;" #slider>
+
+    <ion-slide>
+      <ngx-codemirror
+      style="width:100%; height:100%;text-align: start"
+      class="full-screen"
+      [(ngModel)]="content"
+      (ngModelChange)="changed($event)"
+      [options]="{
+      lineNumbers: true,
+      theme: 'material',
+      mode: 'htmlmixed'
+      }"
+      ></ngx-codemirror>
+    </ion-slide>
+    <ion-slide>
+      <iframe class="full-screen" id="preview" frameBorder="0" scrolling="yes" style="background: white;width:100%;height:100%"></iframe>
+    </ion-slide>
+  </ion-slides>
+</div>
